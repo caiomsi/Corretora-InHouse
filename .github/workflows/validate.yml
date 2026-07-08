@@ -18,13 +18,13 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           # Verifica âncoras/assets internos; ignora o host do GitHub Pages
-          # (domínio próprio ainda não publicado, então o link raiz absoluto do
-          # 404.html não resolve localmente), o WhatsApp e redes sociais/busca.
+          # (domínio próprio ainda não publicado). 404.html não entra: seu link
+          # raiz absoluto (/Corretora-InHouse/) não resolve localmente sem domínio
+          # próprio, e o lychee não consegue excluí-lo antes de tentar montar a URL.
           args: >-
             --no-progress
             --include-fragments
             --exclude "caiomsi\.github\.io"
-            --exclude "^/Corretora-InHouse/$"
             --exclude "wa\.me|facebook\.com|instagram\.com|google\.com"
-            index.html 404.html
+            index.html
           fail: true
