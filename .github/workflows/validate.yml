@@ -22,6 +22,7 @@ jobs:
           args: >-
             --no-progress
             --include-fragments
+            --root-dir .
             --exclude "caiomsi\.github\.io"
             --exclude "wa\.me|facebook\.com|instagram\.com|google\.com"
             index.html 404.html
