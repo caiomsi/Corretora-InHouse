@@ -1,0 +1,28 @@
+name: Validar site
+
+# Verifica links quebrados e caminhos de imagens/assets a cada push.
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checar links e caminhos locais
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Verifica âncoras/assets internos; ignora o host do GitHub Pages
+          # (domínio próprio ainda não publicado), o WhatsApp e redes sociais/busca.
+          args: >-
+            --no-progress
+            --include-fragments
+            --exclude "caiomsi\.github\.io"
+            --exclude "wa\.me|facebook\.com|instagram\.com|google\.com"
+            index.html 404.html
+          fail: true
